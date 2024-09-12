@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:new_bloc_clean_app/core/theme/app_pallete.dart';
+import 'package:new_bloc_clean_app/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:new_bloc_clean_app/features/auth/presentation/pages/login_page.dart';
 import 'package:new_bloc_clean_app/features/auth/presentation/widgets/auth_field.dart';
 import 'package:new_bloc_clean_app/features/auth/presentation/widgets/auth_gradient_button.dart';
@@ -64,7 +66,15 @@ class _SignupPageState extends State<SignupPage> {
             const SizedBox(
               height: 15,
             ),
-            const AuthGradientButton(
+            AuthGradientButton(
+              onPressed: () {
+                if (formKey.currentState!.validate()) {
+                  context.read<AuthBloc>().add(AuthSignUp(
+                      email: emailController.text.trim(),
+                      password: passwordController.text.trim(),
+                      name: nameController.text.trim()));
+                }
+              },
               buttonString: "Account erstellen",
             ),
             const SizedBox(

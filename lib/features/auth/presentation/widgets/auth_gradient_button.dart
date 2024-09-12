@@ -3,7 +3,9 @@ import 'package:new_bloc_clean_app/core/theme/app_pallete.dart';
 
 class AuthGradientButton extends StatelessWidget {
   final String buttonString;
-  const AuthGradientButton({super.key, required this.buttonString});
+  final VoidCallback onPressed;
+  const AuthGradientButton(
+      {super.key, required this.buttonString, required this.onPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +21,7 @@ class AuthGradientButton extends StatelessWidget {
             fixedSize: const Size(390, 55),
             shadowColor: AppPallete.transparentColor,
             backgroundColor: AppPallete.transparentColor),
-        onPressed: () {},
+        onPressed: onPressed,
         child: Text(
           buttonString,
           style: const TextStyle(
