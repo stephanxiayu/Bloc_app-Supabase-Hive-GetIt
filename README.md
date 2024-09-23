@@ -13,3 +13,7 @@
 7. main: MultiBlocProvider
 
 8. init_dependencies.dart
+
+9. domain: entities: user_entities
+
+10. data: models: user_models
