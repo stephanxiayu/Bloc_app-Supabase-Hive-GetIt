@@ -1,3 +1,5 @@
+Auth feature login and signup
+
 1. domain: repository: auth_repository
 
 2. data: datasource : auth_remote_data_source
@@ -17,3 +19,11 @@
 9. domain: entities: user_entities
 
 10. data: models: user_models
+
+3:15 mins
+
+11. session speichern: datasources: auth_remote_datasources
+
+12. Domain: repository: auth_repository
+
+13. data: repository: auth_repo_impl
