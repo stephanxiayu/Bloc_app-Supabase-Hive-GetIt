@@ -7,7 +7,10 @@ import 'package:new_bloc_clean_app/core/theme/theme.dart';
 
 import 'package:new_bloc_clean_app/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:new_bloc_clean_app/features/auth/presentation/pages/login_page.dart';
+import 'package:new_bloc_clean_app/features/blog/presentation/bloc/blog_bloc.dart';
 import 'package:new_bloc_clean_app/init_dependencies.dart';
+
+import 'features/blog/presentation/pages/blog_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -15,7 +18,8 @@ void main() async {
   runApp(MultiBlocProvider(
     providers: [
       BlocProvider(create: (_) => serviceLocator<AuthBloc>()),
-      BlocProvider(create: (_) => serviceLocator<AppUserCubit>())
+      BlocProvider(create: (_) => serviceLocator<AppUserCubit>()),
+      BlocProvider(create: (_) => serviceLocator<BlogBloc>())
     ],
     child: const MyApp(),
   ));
@@ -47,11 +51,7 @@ class _MyAppState extends State<MyApp> {
           },
           builder: (context, isLoggedIn) {
             if (isLoggedIn) {
-              return const Scaffold(
-                body: Center(
-                  child: Text("tada"),
-                ),
-              );
+              return const BlogPage();
             } else {
               return const LoginPage();
             }
