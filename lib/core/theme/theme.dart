@@ -14,6 +14,8 @@ class AppTheme {
         side: BorderSide.none,
         color: MaterialStatePropertyAll(AppPallete.backgroundColor)),
     inputDecorationTheme: InputDecorationTheme(
+        errorBorder: _border(AppPallete.errorColor),
+        border: _border(),
         focusedBorder: _border(AppPallete.gradient1),
         contentPadding: const EdgeInsets.all(27),
         enabledBorder: _border()),
