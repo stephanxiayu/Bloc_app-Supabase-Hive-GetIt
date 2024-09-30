@@ -11,6 +11,7 @@ import 'package:new_bloc_clean_app/features/auth/presentation/bloc/auth_bloc.dar
 import 'package:new_bloc_clean_app/features/blog/data/datasources/blog_remote_data_source.dart';
 import 'package:new_bloc_clean_app/features/blog/data/repositories/blog_repository_impl.dart';
 import 'package:new_bloc_clean_app/features/blog/domain/repositories/blog_repositories.dart';
+import 'package:new_bloc_clean_app/features/blog/domain/usecases/get_uploaded_blogs.dart';
 import 'package:new_bloc_clean_app/features/blog/domain/usecases/upload_blog.dart';
 import 'package:new_bloc_clean_app/features/blog/presentation/bloc/blog_bloc.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -79,5 +80,7 @@ void _initBlog() {
     //usecase
     ..registerFactory(() => UploadBlog(serviceLocator()))
     //blog
-    ..registerLazySingleton(() => BlogBloc(serviceLocator()));
+    // vielleicht muss in blogBlog uploaded und get uploaded umgeschrieben werden
+    ..registerFactory(() => GetUploadedBlogs(serviceLocator()))
+    ..registerLazySingleton(() => BlogBloc(serviceLocator(), serviceLocator()));
 }
