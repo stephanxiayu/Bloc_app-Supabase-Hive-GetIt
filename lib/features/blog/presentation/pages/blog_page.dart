@@ -2,9 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:new_bloc_clean_app/core/common/widgets/loader.dart';
+import 'package:new_bloc_clean_app/core/theme/app_pallete.dart';
 import 'package:new_bloc_clean_app/core/utils/show_snackbar.dart';
 import 'package:new_bloc_clean_app/features/blog/presentation/bloc/blog_bloc.dart';
 import 'package:new_bloc_clean_app/features/blog/presentation/pages/add_new_bloc.dart';
+import 'package:new_bloc_clean_app/features/blog/presentation/widgets/blog_card.dart';
 
 class BlogPage extends StatefulWidget {
   static route() => MaterialPageRoute(builder: (context) => const BlogPage());
@@ -47,11 +49,17 @@ class _BlogPageState extends State<BlogPage> {
           }
           if (state is BlogDisplaySuccess) {
             return ListView.builder(
-                itemCount: state.blogs.length,
-                itemBuilder: (context, index) {
-                  final blogs = state.blogs[index];
-                  return Text(blogs.title);
-                });
+              itemCount: state.blogs.length,
+              itemBuilder: (context, index) {
+                final blogs = state.blogs[index];
+                return BlogCard(
+                  blog: blogs,
+                  color: index % 2 == 0
+                      ? AppPallete.gradient1
+                      : AppPallete.gradient2,
+                );
+              },
+            );
           }
           return const SizedBox();
         },
