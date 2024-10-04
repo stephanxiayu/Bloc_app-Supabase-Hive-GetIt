@@ -1,4 +1,5 @@
 import 'package:new_bloc_clean_app/core/error/exceptions.dart';
+
 import 'package:new_bloc_clean_app/features/auth/data/models/user_models.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -35,6 +36,8 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
         throw ServerException("User ist null");
       }
       return UserModel.fromJson(response.user!.toJson());
+    } on AuthException catch (e) {
+      throw ServerException(e.message);
     } catch (e) {
       throw ServerException(e.toString());
     }
@@ -53,6 +56,8 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
         throw ServerException("User ist null");
       }
       return UserModel.fromJson(response.user!.toJson());
+    } on AuthException catch (e) {
+      throw ServerException(e.message);
     } catch (e) {
       throw ServerException(e.toString());
     }
